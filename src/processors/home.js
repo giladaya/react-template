@@ -8,6 +8,6 @@ export default function() {
     'cdcd',
   ];
   return [
-    {path: 'index.html', component: <Home data={data}/>}
+    {path: 'index.html', component: <Home data={data} level={0}/>}
   ]
 }
