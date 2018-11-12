@@ -12,6 +12,7 @@ const path = require('path');
 const fs = require('fs');
 const fse = require('fs-extra');
 const htmlGen = require('./helpers/htmlGen').default;
+const fileGenGen = require('./helpers/fileGen').default;
 
 const ProcessHome = require('./processors/home').default;
 
@@ -29,21 +30,18 @@ console.log(`Copying assets from ${assetsSourcePath} to ${assetsTargetPath}`);
 fse.copySync(assetsSourcePath, assetsTargetPath);
 
 // Generate routes
-let routes = [];
-routes = routes.concat(ProcessHome());
-// more generators here...
-
-
-// Generate files for routes
-console.log(`Processing ${routes.length} routes`);
-routes.forEach(route => {
-  const outputFilePath = path.join(process.cwd(), OUTPUT_DIR, route.path);
+// function generate(filePath, component) {
+//   const outputFilePath = path.join(process.cwd(), OUTPUT_DIR, filePath);
   
-  // create dir as needed
-  const justThePath = path.dirname(outputFilePath);
-  fse.ensureDirSync(justThePath);
+//   // create dir as needed
+//   const justThePath = path.dirname(outputFilePath);
+//   fse.ensureDirSync(justThePath);
   
-  // output the files
-  fs.writeFileSync(outputFilePath, htmlGen(route.component), 'ascii');
-})
-// TODO: copy assets
+//   // output the files
+//   fs.writeFileSync(outputFilePath, htmlGen(component), 'ascii');
+// }
+
+const generate = fileGenGen(path.join(process.cwd(), OUTPUT_DIR));
+
+console.log('Processing home');
+ProcessHome(generate);

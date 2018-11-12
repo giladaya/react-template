@@ -1,11 +1,12 @@
 import React from 'react';
 import styled from 'styled-components';
 import levelsUrl from '../helpers/levelsUrl';
+import {withLevel} from '../components/WithLevel';
 
 const Title = styled.h1`
 `
 
-export default props => (
+const Home = props => (
   <div>
     <Title>Home</Title>
     <div>
@@ -19,3 +20,5 @@ export default props => (
     <img src={levelsUrl('assets/Chuck-norris-002.jpg', props.level)}/>
   </div>
 )
+
+export default withLevel(Home);

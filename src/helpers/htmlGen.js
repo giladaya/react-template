@@ -1,14 +1,10 @@
-import React from 'react';
 import ReactDOMServer from 'react-dom/server';
 import { ServerStyleSheet } from 'styled-components';
-import App from '../App';
 
-export default function( Component, title="React Template" ) {
+export default function( element, title="React Template" ) {
   const sheet = new ServerStyleSheet();
   const reactDom = ReactDOMServer.renderToStaticMarkup(
-    <App>
-      {Component}
-    </App>
+    sheet.collectStyles(element)
   );
 
   const styleTags = sheet.getStyleTags();

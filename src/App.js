@@ -20,7 +20,7 @@ const AppContainer = styled.div`
   }
 `
 
-export default ({children}) => (
+export default ({children, level}) => (
   <AppContainer>
     <GlobalStyle/>
     {children}
